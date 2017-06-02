@@ -44,7 +44,26 @@ atlas_add_library( AnalysisPackage
 add_dependencies( AnalysisPackage RestFrames )
 ```
 
-The explicit dependency being added will make sure `RestFrames` gets build first before your package does.
+The explicit dependency being added will make sure `RestFrames` gets build first before your package does. Lastly, your top-level project's `CMakeLists.txt` needs to be edited as follows:
+
+```
+--- CMakeLists.txt  2017-06-02 08:38:41.538140740 -0500
++++ ../CMakeLists.txt   2017-06-02 08:37:55.548415446 -0500
+@@ -28,10 +28,13 @@
+ find_package( AtlasCMake QUIET )
+
+ # Find the project that we depend on:
+ find_package( AnalysisBase )
+
++# Include the externals configuration:
++include( Ext_RestFrames/externals.cmake )
++
+ # Set up CTest:
+ atlas_ctest_setup()
+
+ # Set up a work directory project:
+ atlas_project( WorkDir 2.6.3
+```
 
 ### More details
 
