@@ -27,9 +27,8 @@ ExternalProject_Add( RestFrames
    --prefix=${_restFramesBuildDir} --enable-shared --disable-static
    --with-rootsys=${ROOTSYS}
    BUILD_IN_SOURCE 1
-   BUILD_COMMAND make
-   COMMAND make install
-   INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory
+   INSTALL_COMMAND COMMAND make install
+   COMMAND ${CMAKE_COMMAND} -E copy_directory
    ${_restFramesBuildDir}/ <INSTALL_DIR>
    BUILD_BYPRODUCTS ${RESTFRAMES_LIBRARIES} )
 
