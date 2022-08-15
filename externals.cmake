@@ -17,15 +17,12 @@ set( RESTFRAMES_INCLUDE_DIRS
 set( RESTFRAMES_LIBRARIES
    ${_restFramesBuildDir}/lib/${CMAKE_SHARED_LIBRARY_PREFIX}RestFrames${CMAKE_SHARED_LIBRARY_SUFFIX} )
 
-# Get the platform name.
-atlas_platform_id( _platform )
-
 # Set up the build of RestFrames for the build area:
 ExternalProject_Add( RestFrames
    PREFIX ${CMAKE_BINARY_DIR}
-   URL https://github.com/crogan/RestFrames/archive/v1.0.1.tar.gz
-   URL_MD5 668e3ca6f301172d7e67b5e85b1ab6d2
-   INSTALL_DIR ${CMAKE_BINARY_DIR}/${_platform}
+   URL https://github.com/brianaagaard/RestFrames/archive/refs/tags/v1.0.2.1.tar.gz
+   URL_MD5 3bb3660c6086c56a8e9ac42e86b05784
+   INSTALL_DIR ${CMAKE_BINARY_DIR}/${ATLAS_PLATFORM}
    CONFIGURE_COMMAND <SOURCE_DIR>/configure
    --prefix=${_restFramesBuildDir} --enable-shared --disable-static
    --with-rootsys=${ROOTSYS}
@@ -44,4 +41,3 @@ install( DIRECTORY ${_restFramesBuildDir}/
 
 # Clean up:
 unset( _restFramesBuildDir )
-unset( _platform )
